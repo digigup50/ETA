@@ -1,0 +1,125 @@
+{
+  "expo": {
+    "name": "ETA",
+    "slug": "gameplan",
+    "version": "1.4.0",
+    "scheme": "movement",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "icon": "./assets/images/eta_logo.png",
+    "splash": {
+      "image": "./assets/images/eta_splashScrn.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#000000"
+    },
+    "runtimeVersion": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "appStoreUrl": "https://apps.apple.com/us/app/gameplan-plug-into-nightlife/id1448003243?ls=1",
+      "usesAppleSignIn": true,
+      "bundleIdentifier": "com.victorany.GameplanETA",
+      "buildNumber": "4",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "This app uses the camera to allow you to upload a profile photo",
+        "NSUserTrackingUsageDescription": "This identifier will be used to deliver personalized ads to you.",
+        "SKAdNetworkItems": [
+          {
+            "SKAdNetworkIdentifier": "v9wttpbfk9.skadnetwork"
+          },
+          {
+            "SKAdNetworkIdentifier": "n38lu8286q.skadnetwork"
+          }
+        ]
+      },
+      "config": {
+        "branch": {
+          "apiKey": "key_live_fbRJKc43YZR4wNlsEYgQ0jjkrBfjS479"
+        }
+      }
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 30000,
+      "url": "https://u.expo.dev/7490b920-08e7-11e9-b95c-03338469957d"
+    },
+    "android": {
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.victoranyirah.Gameplan",
+      "package": "com.victoranyirah.Gameplan",
+      "googleServicesFile": "./google-services.json",
+      "versionCode": 26,
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
+      "blockedPermissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
+      "useNextNotificationsApi": true,
+      "config": {
+        "branch": {
+          "apiKey": "key_live_fbRJKc43YZR4wNlsEYgQ0jjkrBfjS479"
+        }
+      }
+    },
+    "web": {
+      "favicon": "./assets/images/favicon.png"
+    },
+    "extra": {
+      "facebook": {
+        "appId": "742957793182154"
+      },
+      "eas": {
+        "projectId": "7490b920-08e7-11e9-b95c-03338469957d"
+      }
+    },
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/ic_stat_eta.png",
+          "color": "#00fff0"
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you upload photos!",
+          "cameraPermission": "Allow $(PRODUCT_NAME) to open the camera"
+        }
+      ],
+      [
+        "expo-apple-authentication",
+        {}
+      ],
+      [
+        "sentry-expo"
+      ],
+      [
+        "expo-facebook",
+        {
+          "appID": "742957793182154",
+          "clientToken": "f31eafa435efcf60634854f827a0390e",
+          "displayName": "ETA",
+          "scheme": "fb742957793182154",
+          "advertiserIDCollectionEnabled": false,
+          "autoLogAppEventsEnabled": false,
+          "isAutoInitEnabled": true,
+          "iosUserTrackingPermission": "This identifier will be used to deliver personalized ads to you."
+        }
+      ]
+    ],
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "gameplan-app",
+            "project": "movement-client",
+            "authToken": "e8aac081c7b1436da94cc6709b15540fb931034a0bee40b2bf79dbc4dd271f02"
+          }
+        }
+      ]
+    },
+    "owner": "outlettech"
+  }
+}
