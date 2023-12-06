@@ -292,7 +292,7 @@ function MainApp(props) {
             name="Chat"
             component={ChatScreen}
             options={({ route }) => ({
-              title: route.params.title || "Chat",
+              title: route.params.title.slice(0, 8) + '...' || "Chat",
               headerBackTitle: 'My Chats',
               // headerRight: () => (
               //   <Button

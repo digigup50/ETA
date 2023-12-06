@@ -17,6 +17,7 @@ export default class CommentCell extends Component {
 
 	constructor(props) {
 		super(props);
+		console.log('Props', props);
 		this.state = {
 			blockList: MainUser.getBlockList(),
 			showActionSheet: false
@@ -185,6 +186,8 @@ export default class CommentCell extends Component {
 		return blockList.includes(username);
 	}
 
+
+
 	render() {
 		const comment = this.props.comment
 		const message = this.props.message
@@ -195,6 +198,7 @@ export default class CommentCell extends Component {
 		if (this.isCommenterBlocked()) {
 			return null
 		}
+		// alert(this.getText())
 
 		return (
 			<View pl={2} pr={2} mb={2} style={{ flex: 1, backgroundColor: StylerInstance.getBackgroundColor() }}>
@@ -211,14 +215,20 @@ export default class CommentCell extends Component {
 								{this.getUserBadge()}
 							</View>
 						</View>
-						<ParsedText style={{ marginRight: 10, marginTop: 5, fontSize: 16, color: StylerInstance.getOutlineColor() }}
-							parse={
-								[
-									{ type: 'url', style: styles.url, onPress: this.handleUrlPress }
-								]
-							}
-						>
-							{this.getText()}</ParsedText>
+
+
+
+						{this.getText().includes('file') ?
+							<Image source={{ uri: this.getText() }} size='2xl' />
+							:
+							<ParsedText style={{ marginRight: 10, marginTop: 5, fontSize: 16, color: StylerInstance.getOutlineColor() }}
+								parse={
+									[
+										{ type: 'url', style: styles.url, onPress: this.handleUrlPress }
+									]
+								}
+							>
+								{this.getText()}</ParsedText>}
 						{this.props.showTimestamp && <Text fontSize="xs" color="coolGray.500" style={{ fontSize: 10, marginTop: 10 }}>{this.getCreatedAtTime()}</Text>}
 
 					</View>

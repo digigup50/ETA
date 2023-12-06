@@ -588,19 +588,28 @@ class HomeScreen extends React.Component {
 			return (
 				<View style={{ backgroundColor: "#222323", paddingTop: 10, paddingBottom: 10 }}>
 					<SafeAreaView>
-						<View style={{ marginLeft: 10, marginRight: 1, marginBottom: 20 }}>
-							<Text mb={1} fontSize={"2xl"} style={{ fontWeight: 'bold', color: 'white', fontSize: 38 }}>What's the move in</Text>
-							<TouchableHighlight onPress={() => this.setState({ cityPickerVisible: true })}>
+						<View style={{ marginLeft: 10, marginRight: 1, flexDirection: 'row' }}>
+							<Text mb={1} fontSize={"2xl"} style={{ fontWeight: 'bold', color: 'white', fontSize: 29 }}>What's the move in</Text>
+							<TouchableHighlight onPress={() => this.setState({ cityPickerVisible: true })} style={{ marginLeft: 10 }}>
 								<View style={{ display: 'flex', flexDirection: 'row' }}>
-									<Text fontSize={"2xl"} style={{ fontSize: 38, color: Colors.primaryETAColor, fontWeight: 'bold', paddingLeft: 0 }}
-									>{zoneLabel}</Text>
-									<View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+									<Text fontSize={"2xl"} style={{ fontSize: 29, color: Colors.primaryETAColor, fontWeight: 'bold', paddingLeft: 0 }}
+									>{zoneLabel.slice(0, 3)}<Text>...</Text></Text>
+									<View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 5 }}>
 										<Icon as={Ionicons} name='chevron-down-outline' style={{ color: Colors.primaryETAButtonColor, marginLeft: 5, fontSize: 20 }} />
 									</View>
 								</View>
 							</TouchableHighlight>
 
 						</View>
+						<TouchableHighlight onPress={() => this.setState({ cityPickerVisible: true })} style={{ marginLeft: 10 }}>
+							<View style={{ display: 'flex', flexDirection: 'row' }}>
+								<Text fontSize={"2xl"} style={{ fontSize: 29, color: Colors.primaryETAColor, fontWeight: 'bold', paddingLeft: 0 }}
+								>{zoneLabel}</Text>
+								<View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+									<Icon as={Ionicons} name='chevron-down-outline' style={{ color: Colors.primaryETAButtonColor, marginLeft: 5, fontSize: 20 }} />
+								</View>
+							</View>
+						</TouchableHighlight>
 						<StoryViewCell
 							stories={this.getFeatured(events, this.state.stories)}
 							handlePress={(item) => {

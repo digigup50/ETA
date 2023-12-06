@@ -1,7 +1,7 @@
 import React, { Component, useCallback } from 'react';
 import { GiftedChat, InputToolbar, Composer } from 'react-native-gifted-chat';
-import { Alert, Platform, KeyboardAvoidingView, StatusBar, SafeAreaView, Image, TouchableOpacity, } from 'react-native';
-import { Button, Icon, Text, ActionSheet, Heading, IconButton, Actionsheet, View } from 'native-base';
+import { Alert, Platform, KeyboardAvoidingView, StatusBar, SafeAreaView, Image, TouchableOpacity } from 'react-native';
+import { Button, Icon, Text, ActionSheet, Heading, IconButton, Actionsheet, View, Input } from 'native-base';
 import CommentCell from '../components/CommentCell';
 import CommentAPI from '../api/CommentAPI';
 import UserAPI from '../api/UserAPI';
@@ -44,7 +44,9 @@ class ChatScreen extends Component {
       loadingEarlier: false,
       showCalendarPopup: false,
       page: 1,
-      showSheet: false
+      showSheet: false,
+      searchText: '',
+      showTextField: false,
     }
     this.draftedMessage = null;
     this.shouldPoll = true;
@@ -138,6 +140,7 @@ class ChatScreen extends Component {
     return (
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <IconButton icon={<Icon as={Ionicons} variant={"link"} name='ellipsis-vertical-outline' />} onPress={() => this.setState({ showActionSheet: true })} />
+        <IconButton icon={<Icon as={Ionicons} variant={"link"} name='search' />} onPress={() => this.setState({ showTextField: !this.state.showTextField })} />
         <MaterialIcons.Button name='account-supervisor' size={30} color={'#00A3A3'} backgroundColor={StylerInstance.getBackgroundColor()} underlayColor={'#00A3A3'} onPress={() => { this.props.navigation.navigate('UserList') }} />
       </View>
     )
@@ -601,6 +604,19 @@ class ChatScreen extends Component {
     }
     return (
       <View style={{ flex: 1, backgroundColor: StylerInstance.getBackgroundColor() }}>
+        {this.state.showTextField === true ?
+          <View style={{ alignItems: 'center', justifyContent: 'center', flex: 0.1 }}>
+            <Input
+              size='md'
+              placeholder='Search Here'
+              width='95%'
+              value={this.state.searchText}
+              onChangeText={(txt) => this.setState({ searchText: txt })}
+              InputLeftElement={
+                <Icon as={Ionicons} variant={"link"} name='search' ml='1.5' />
+              }
+            />
+          </View> : null}
         <GiftedChat
           messages={this.state.messages}
           onSend={messages => this.onSend(messages)}
@@ -618,7 +634,6 @@ class ChatScreen extends Component {
           renderFooter={this.renderFooter}
         //renderBubble={}
         />
-
         <UserProfilePopup
           user={this.state.popUser}
           onDoneClicked={() => this.setState({ popUser: null })}

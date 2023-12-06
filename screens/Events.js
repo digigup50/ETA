@@ -48,7 +48,7 @@ class EventsScreen extends React.Component {
 			clickedEvent: false,
 			search: '',
 			tags: [],
-
+			startDates: [],
 			isDatePickerVisible: false,
 			selectedDate: null,
 		}
@@ -126,11 +126,6 @@ class EventsScreen extends React.Component {
 		});
 	};
 
-
-
-
-
-
 	async componentDidUpdate(prevProps) {
 		if (prevProps.user !== this.props.user) {
 			this.fetchData(this.state.kind);
@@ -174,6 +169,8 @@ class EventsScreen extends React.Component {
 		}
 
 		console.log('eventData', eventData)
+		startDates = eventData.map(event => event.start_date);
+		console.log('start_dates:', startDates);
 		if (eventData && eventData.code !== -1 && eventData.length) {
 			weakThis.setState({
 				events: eventData,
