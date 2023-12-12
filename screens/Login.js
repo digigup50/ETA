@@ -29,7 +29,7 @@ class LoginScreen extends React.Component {
     super(props)
     this.state = {
       loginLoading: null,
-      mobile: '1111'
+      mobile: ''
     }
 
     this.userAPI = new UserAPI();
@@ -41,7 +41,7 @@ class LoginScreen extends React.Component {
     AnalyticsManager.logEvent(events.USER_ENTERED_PHONE)
     const mobile = this.state.mobile
     console.log(this.state.mobile)
-0
+    0
     if (mobile === FakeUserNumber) {
       await this.handleFakeUserLogin()
       return;

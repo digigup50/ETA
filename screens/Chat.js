@@ -387,8 +387,29 @@ class ChatScreen extends Component {
     const currentMessage = props.currentMessage
     const nextMessage = props.nextMessage;
     const empty = this.isEmpty(nextMessage)
-    // console.log(nextMessage)
-    if (empty && isIphoneX()) {
+    var arr = [currentMessage]
+    console.log('#@#@#@#@#@', arr)
+    console.log("CurrentMessage", currentMessage)
+    console.log("CurrentMessageText", currentMessage.text)
+    if (this.state.showTextField && this.state.searchText != null) {
+      const filteredMessages = arr.filter((item) => {
+        console.log('View', item)
+        return item.text.includes(this.state.searchText); // Adjust the condition based on your search logic
+      });
+      return (
+        <View pr={2} pl={2}>
+          {filteredMessages.map((message, index) => (
+            <CommentCell
+              key={index} // Make sure to set a unique key for each item in the array
+              message={message}
+              showTimestamp={this.props.config && this.props.config.chat_timestamp_enabled}
+              onUserImageClick={(user) => this.setState({ popUser: user })}
+            />
+          ))}
+          <View style={{ height: 50, backgroundColor: StylerInstance.getBackgroundColor() }}></View>
+        </View>
+      );
+    } else if (empty && isIphoneX()) {
       return (
         <View pr={2} pl={2}>
           <CommentCell message={currentMessage}
@@ -398,9 +419,17 @@ class ChatScreen extends Component {
         </View>
       )
     }
-    return (<CommentCell message={currentMessage}
-      showTimestamp={this.props.config && this.props.config.chat_timestamp_enabled}
-      onUserImageClick={(user) => this.setState({ popUser: user })} />)
+    else {
+      return (
+        <CommentCell message={currentMessage}
+          showTimestamp={this.props.config && this.props.config.chat_timestamp_enabled}
+          onUserImageClick={(user) => this.setState({ popUser: user })} />
+      )
+    }
+    // if () {
+
+    // }
+
   }
 
   async startDM(user) {
